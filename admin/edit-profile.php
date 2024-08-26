@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $r = mysqli_query($conn, $sql_select_query);
 
         if (mysqli_num_rows($r) > 0) {
-            $emailErr = "<p style='color:red'> * Email Already Register</p>";
+            $emailErr = "<p style='color:red'> * Email Sudah Terdaftar</p>";
         } else {
             $sql = "UPDATE admin SET name = '$name', email = '$email', dob = '$dob', gender= '$gender' WHERE email='$session_email' ";
             $result = mysqli_query($conn, $sql);
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div style="">
+<div>
     <div class="login-form-bg h-100">
         <div class="container mt-5 h-100">
             <div class="row justify-content-center h-100">
@@ -108,21 +108,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-check-label">Jenis kelamin :</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Male") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Pria") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Male" selected>
+                                                                                                    } ?> value="Pria" selected>
                                         <label class="form-check-label">Pria</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Female") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Wanita") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Female">
+                                                                                                    } ?> value="Wanita">
                                         <label class="form-check-label">Wanita</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Other") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Lainnya") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Other">
+                                                                                                    } ?> value="Lainnya">
                                         <label class="form-check-label">Lainnya</label>
                                     </div>
 

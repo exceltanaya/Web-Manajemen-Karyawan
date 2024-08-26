@@ -57,7 +57,7 @@ require_once "../connection.php";
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h4 class="mb-0">Request Cuti</h4>
+            <h4 class="mb-0">Permintaan Cuti</h4>
         </div>
         <div class="card-body">
             <div class="pdf-icon mb-4">
@@ -94,8 +94,8 @@ require_once "../connection.php";
                                 $status = $rows["status"];
                                 
                                 // Format tanggal
-                                $start_date_formatted = date("jS F, Y", strtotime($start_date));
-                                $last_date_formatted = date("jS F, Y", strtotime($last_date));
+                                $start_date_formatted = date("d-m-Y", strtotime($start_date));
+                                $last_date_formatted = date("d-m-Y", strtotime($last_date));
                                 
                                 // Hitung total hari
                                 $date1 = new DateTime($start_date);
@@ -116,17 +116,17 @@ require_once "../connection.php";
                                     <td>
                                         <?php
                                         if ($status == 'pending') {
-                                            echo "<a href='accept-leave.php?id={$id}' class='btn btn-sm btn-outline-primary me-2'>Accept</a>";
-                                            echo "<a href='cancel-leave.php?id={$id}' class='btn btn-sm btn-outline-danger me-2'>Cancel</a>";
+                                            echo "<a href='accept-leave.php?id={$id}' class='btn btn-sm btn-outline-primary me-2'>Diterima</a>";
+                                            echo "<a href='cancel-leave.php?id={$id}' class='btn btn-sm btn-outline-danger me-2'>Ditolak</a>";
                                         }
-                                        echo "<a href='delete-leave.php?id={$id}' class='btn btn-sm btn-outline-danger' onclick='return confirm(\"Are you sure you want to delete this record?\");'>Delete</a>";
+                                        echo "<a href='delete-leave.php?id={$id}' class='btn btn-sm btn-outline-danger' onclick='return confirm(\"Yakin Ingin Menghapus?\");'>Hapus</a>";
                                         ?>
                                     </td>
                                 </tr>
                                 <?php
                             }
                         } else {
-                            echo "<tr><td colspan='8' class='text-center'>No Leave Requests Found</td></tr>";
+                            echo "<tr><td colspan='8' class='text-center'>Tidak Ada Permintaan Cuti</td></tr>";
                         }
                         ?>
                     </tbody>

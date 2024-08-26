@@ -51,11 +51,11 @@
                                     $date1 = date_create($dob);
                                     $date2 = date_create("now");
                                     $diff = date_diff($date1, $date2);
-                                    $age = $diff->format("%y Years");
+                                    $age = $diff->format("%y Tahun");
                                 }
 
                                 if ($email == $_SESSION["email_emp"]) {
-                                    $name = "{$name} (You)";
+                                    $name = "{$name} (Anda)";
                                 }
                         ?>
                             <tr>
@@ -71,7 +71,7 @@
                                 $i++;
                             }
                         } else {
-                            echo "<tr><td colspan='7'>No employees found</td></tr>";
+                            echo "<tr><td colspan='7'>Karyawan Tidak Ditemukan</td></tr>";
                         }
                         ?>
                     </tbody>

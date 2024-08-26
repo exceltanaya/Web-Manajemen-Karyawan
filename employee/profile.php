@@ -25,7 +25,7 @@ require_once "include/header.php";
        if( empty($gender)){
            $gender = "Not Defined";
        }else{
-        $dob = date('jS F Y' , strtotime($dob) );
+        $dob = date('d-m-Y' , strtotime($dob) );
        }
 
        if( empty($dob)){
@@ -35,7 +35,7 @@ require_once "include/header.php";
                 $date1=date_create($dob);
                 $date2=date_create("now");
                 $diff=date_diff($date1,$date2);
-                $age = $diff->format("%y Years"); 
+                $age = $diff->format("%y Tahun");      
         }
 }
  ?>
@@ -56,7 +56,7 @@ require_once "include/header.php";
                     <p class="card-text">Usia: <?php echo $age; ?> 
                     </p>
                     <p class="card-text">Tanggal Lahir: <?php echo $dob; ?> </p>
-                    <p class="card-text">Gaji: <?php echo $salary . " Rs."; ?> </p>
+                    <p class="card-text">Gaji:<td>Rp<td> <?php echo  $salary = $salary ? number_format($salary, 0, ',', '.') : "";?></p>
                     
                     <p class="text-center">
                     <a href="edit-profile.php" class="btn btn-outline-primary">Edit Profil</a>

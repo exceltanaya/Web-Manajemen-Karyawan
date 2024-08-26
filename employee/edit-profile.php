@@ -59,16 +59,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "UPDATE employee SET name = '$name', email = '$email', dob = '$dob', gender = '$gender' WHERE email = '$session_email'";
             $result = mysqli_query($conn, $sql);
             if ($result) {
-                $_SESSION['email_emp'] = $email;
+                $_SESSION['email'] = $email;
                 echo "<script>
-                    $(document).ready(function() {
-                        $('#showModal').modal('show');
-                        $('#modalHead').hide();
-                        $('#linkBtn').attr('href', 'profile.php');
-                        $('#linkBtn').text('Lihat Profil');
-                        $('#addMsg').text('Profil Berhasil Di Edit!!');
-                        $('#closeBtn').hide();
-                    });
+                        $(document).ready( function(){
+                            $('#showModal').modal('show');
+                            $('#modalHead').hide();
+                            $('#linkBtn').attr('href', 'profile.php');
+                            $('#linkBtn').text('Lihat Profil');
+                            $('#addMsg').text('Profil Berhasil Di Ubah!!');
+                            $('#closeBtn').hide();
+                        })
                     </script>";
             }
         }
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div style="">
+<div>
     <div class="login-form-bg h-100">
         <div class="container mt-5 h-100">
             <div class="row justify-content-center h-100">
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5 shadow">
-                                <h4 class="text-center">Edit Profil Anda</h4>
+                                <h4 class="text-center">Ubah Profil Anda</h4>
                                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                                     <div class="form-group">
                                         <label>Nama Lengkap :</label>
@@ -107,21 +107,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-check-label">Jenis Kelamin :</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Male") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Pria") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Male">
-                                        <label class="form-check-label">Laki-laki</label>
+                                                                                                    } ?> value="Pria">
+                                        <label class="form-check-label">Pria</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Female") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Wanita") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Female">
-                                        <label class="form-check-label">Perempuan</label>
+                                                                                                    } ?> value="Wanita">
+                                        <label class="form-check-label">Wanita</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Other") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Lainnya") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Other">
+                                                                                                    } ?> value="Lainnya">
                                         <label class="form-check-label">Lainnya</label>
                                     </div>
 

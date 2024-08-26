@@ -39,7 +39,7 @@ $i = 1;
                     $id = $rows["id"];
 
                     $gender = $gender ?: "Not Defined";
-                    $dob = $dob ? date('jS F, Y', strtotime($dob)) : "Not Defined";
+                    $dob = $dob ? date('d-m-Y', strtotime($dob)) : "Not Defined";
                     ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
@@ -53,11 +53,11 @@ $i = 1;
                                     <i class='fa fa-edit'></i> Edit
                                 </a>
                                 <a href='delete-admin.php?id=<?php echo $id; ?>' class='btn btn-danger btn-sm'>
-                                    <i class='fa fa-trash'></i> Delete
+                                    <i class='fa fa-trash'></i> Hapus
                                 </a>
                             <?php else: ?>
                                 <a href='profile.php' class='btn btn-info btn-sm'>
-                                    <i class='fa fa-user'></i> Profile
+                                    <i class='fa fa-user'></i> Profil
                                 </a>
                             <?php endif; ?>
                         </td>

@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-<div style="">
+<div>
     <div class="login-form-bg h-100">
         <div class="container  h-100">
             <div class="row justify-content-center h-100">
@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Password: </label>
+                                        <label>Kata Sandi: </label>
                                         <input type="password" class="form-control" value="<?php echo $pass; ?>" name="pass">
                                         <?php echo $passErr; ?>
                                     </div>
@@ -131,15 +131,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-check-label">Jenis Kelamin :</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Male") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Pria") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Male" selected>
-                                        <label class="form-check-label">Laki-laki</label>
+                                                                                                    } ?> value="Pria" selected>
+                                        <label class="form-check-label">Pria</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Female") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Wanita") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Female">
+                                                                                                    } ?> value="Wanita">
                                         <label class="form-check-label">Wanita</label>
                                     </div>
 

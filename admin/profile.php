@@ -48,7 +48,7 @@ require_once "include/header.php";
                                                     $date1=date_create($dob);
                                                     $date2=date_create("now");
                                                     $diff=date_diff($date1,$date2);
-                                                    echo $diff->format("%y Years"); }?> 
+                                                    echo $diff->format("%y Tahun"); }?> 
                     </p>
                     
                     <p class="text-center">

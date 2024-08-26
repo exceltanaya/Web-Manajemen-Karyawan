@@ -130,7 +130,7 @@ $emp_ = mysqli_query($conn, $sql_highest_salary);
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">S.No.</th>
+                            <th scope="col">No.</th>
                             <th scope="col">Id Karyawan</th>
                             <th scope="col">Nama Karyawan</th>
                             <th scope="col">Email Karyawan</th>

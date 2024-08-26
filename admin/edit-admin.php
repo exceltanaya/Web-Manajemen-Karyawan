@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_REQUEST["name"])) {
-        $nameErr = "<p style='color:red'> * Name is required</p>";
+        $nameErr = "<p style='color:red'> * Nama Diperlukan</p>";
         $name = "";
     } else {
         $name = $_REQUEST["name"];
     }
 
     if (empty($_REQUEST["email"])) {
-        $emailErr = "<p style='color:red'> * Email is required</p>";
+        $emailErr = "<p style='color:red'> * Email Diperlukan</p>";
         $email = "";
     } else {
         $email = $_REQUEST["email"];
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $r = mysqli_query($conn, $sql_select_query);
 
         if (mysqli_num_rows($r) > 0) {
-            $emailErr = "<p style='color:red'> * Email Already Register</p>";
+            $emailErr = "<p style='color:red'> * Email Sudah Terdaftar</p>";
         } else {
             $sql = "UPDATE admin SET name = '$name', email = '$email', dob = '$dob', gender= '$gender' WHERE id = $id";
             $result = mysqli_query($conn, $sql);
@@ -63,9 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $('#showModal').modal('show');
                         $('#modalHead').hide();
                         $('#linkBtn').attr('href', 'manage-admin.php');
-                        $('#linkBtn').text('View Admins');
-                        $('#addMsg').text('Profile Edit Successfully!');
-                        $('#closeBtn').text('Edit Again?');
+                        $('#linkBtn').text('Lihat Admin');
+                        $('#addMsg').text('Profil Sukses Diubah!');
+                        $('#closeBtn').text('Ubah Lagi?');
                     })
                  </script>";
             }
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div style="">
+<div>
     <div class="login-form-bg h-100">
         <div class="container mt-5 h-100">
             <div class="row justify-content-center h-100">
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5 shadow">
-                                <h4 class="text-center">Edit Admin Profile</h4>
+                                <h4 class="text-center">Ubah Admin Profil</h4>
                                 <form method="POST" action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?id=' . $id; ?>">
                                     <div class="form-group">
                                         <label>Nama Lengkap :</label>
@@ -102,29 +102,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-check-label">Jenis kelamin :</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Male") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Pria") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Male">
-                                        <label class="form-check-label">Laki-laki</label>
+                                                                                                    } ?> value="Pria">
+                                        <label class="form-check-label">Pria</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Female") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Wanita") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Female">
+                                                                                                    } ?> value="Wanita">
                                         <label class="form-check-label">Wanita</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Other") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Lainnya") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Other">
+                                                                                                    } ?> value="Lainnya">
                                         <label class="form-check-label">Lain-lain</label>
                                     </div>
                                     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
                                         <div class="btn-group">
-                                            <input type="submit" value="Save Changes" class="btn btn-primary w-20" name="save_changes">
+                                            <input type="submit" value="Simpan Perubahan" class="btn btn-primary w-20" name="save_changes">
                                         </div>
                                         <div class="input-group">
-                                            <a href="profile.php" class="btn btn-primary w-20">Close</a>
+                                            <a href="profile.php" class="btn btn-primary w-20">Tutup</a>
                                         </div>
                                     </div>
                                 </form>

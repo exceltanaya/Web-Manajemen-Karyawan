@@ -28,19 +28,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_REQUEST["name"])) {
-        $nameErr = "<p style='color:red'> * Name is required</p>";
+        $nameErr = "<p style='color:red'> * Nama Diperlukan</p>";
     } else {
         $name = $_REQUEST["name"];
     }
 
     if (empty($_REQUEST["email"])) {
-        $emailErr = "<p style='color:red'> * Email is required</p> ";
+        $emailErr = "<p style='color:red'> * Email Diperlukan</p> ";
     } else {
         $email = $_REQUEST["email"];
     }
 
     if (empty($_REQUEST["pass"])) {
-        $passErr = "<p style='color:red'> * Password is required</p> ";
+        $passErr = "<p style='color:red'> * Password Diperlukan</p> ";
     } else {
         $pass = $_REQUEST["pass"];
     }
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $r = mysqli_query($conn, $sql_select_query);
 
         if (mysqli_num_rows($r) > 0) {
-            $emailErr = "<p style='color:red'> * Email Already Register</p>";
+            $emailErr = "<p style='color:red'> * Email Sudah Terdaftar</p>";
         } else {
 
             $sql = "INSERT INTO admin( name , email , password , dob, gender ) VALUES( '$name' , '$email' , '$pass' , '$dob' , '$gender' )  ";
@@ -67,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $('#showModal').modal('show');
                             $('#modalHead').hide();
                             $('#linkBtn').attr('href', 'manage-admin.php');
-                            $('#linkBtn').text('View Admins');
-                            $('#addMsg').text('Admin Added Successfully!');
-                            $('#closeBtn').text('Add More?');
+                            $('#linkBtn').text('Lihat Admin');
+                            $('#addMsg').text('Admin Sukses Ditambahkan!');
+                            $('#closeBtn').text('Tambah Lagi?');
                         })
                      </script>
                      ";
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-<div style="">
+<div>
     <div class="login-form-bg h-100">
         <div class="container mt-5 h-100">
             <div class="row justify-content-center h-100">
@@ -122,15 +122,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <label class="form-check-label">Jenis Kelamin :</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Male") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Pria") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Male" selected>
+                                                                                                    } ?> value="Pria" selected>
                                         <label class="form-check-label">Pria</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Female") {
+                                        <input class="form-check-input" type="radio" name="gender" <?php if ($gender == "Wanita") {
                                                                                                         echo "checked";
-                                                                                                    } ?> value="Female">
+                                                                                                    } ?> value="Wanita">
                                         <label class="form-check-label">Wanita</label>
                                     </div>
 

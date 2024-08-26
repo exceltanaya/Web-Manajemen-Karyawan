@@ -56,9 +56,9 @@ $i = 1;
                 ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo date("jS F", strtotime($start_date)); ?></td>
-                        <td><?php echo date("jS F", strtotime($last_date)); ?></td>
-                        <td><?php echo $diff->format("%a days"); ?></td>
+                        <td><?php echo date("d-m-Y", strtotime($start_date)); ?></td>
+                        <td><?php echo date("d-m-Y", strtotime($last_date)); ?></td>
+                        <td><?php echo $diff->format("%a hari"); ?></td>
                         <td><?php echo htmlspecialchars($reason); ?></td>
                         <td><?php echo htmlspecialchars($status); ?></td>
                     </tr>
