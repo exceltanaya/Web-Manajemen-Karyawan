@@ -2,7 +2,14 @@
 require_once "include/header.php";
 require_once "../connection.php";
 
-$sql = "SELECT * FROM employee";
+// Logika pencarian
+$search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+$where = '';
+if (!empty($search)) {
+    $where = "WHERE name LIKE '%$search%' OR email LIKE '%$search%' OR id LIKE '%$search%'";
+}
+
+$sql = "SELECT * FROM employee $where";
 $result = mysqli_query($conn, $sql);
 
 $i = 1;
@@ -58,6 +65,17 @@ $i = 1;
             <h4 class="mb-0">Karyawan CV. IMMANUEL</h4>
         </div>
         <div class="card-body">
+            <!-- Add search form -->
+            <form action="" method="GET" class="mb-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari karyawan..." name="search" value="<?php echo htmlspecialchars($search); ?>">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                    <?php if (!empty($search)): ?>
+                        <a href="manage-employees.php" class="btn btn-secondary">Reset</a>
+                    <?php endif; ?>
+                </div>
+            </form>
+
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -111,15 +129,15 @@ $i = 1;
                                 <a href='edit-employee.php?id=<?php echo $id; ?>' class='btn btn-primary btn-action me-2'>
                                     <i class='fas fa-edit'></i>Edit
                                 </a>
-                                <a href='delete-employee.php?id=<?php echo $id; ?>' class='btn btn-danger btn-action'>
-                                    <i class='fas fa-trash'></i>Delete
+                                <a href='javascript:void(0);' onclick='showDeleteConfirmation("<?php echo $id; ?>", "<?php echo $name; ?>")' class='btn btn-danger btn-action'>
+                                    <i class='fas fa-trash'></i>Hapus
                                 </a>
                             </td>
                         </tr>
                         <?php 
                             }
                         } else {
-                            echo "<tr><td colspan='9' class='text-center'>No Employees Found!</td></tr>";
+                            echo "<tr><td colspan='9' class='text-center'>Tidak ada karyawan yang ditemukan!</td></tr>";
                         }
                         ?>
                     </tbody>
@@ -129,7 +147,74 @@ $i = 1;
     </div>
 </div>
 
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin menghapus karyawan <span id="employeeName"></span>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-danger" id="confirmDelete">Ya, Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+let deleteModal;
+
+function showDeleteConfirmation(id, name) {
+    $('#employeeName').text(name);
+    $('#confirmDelete').data('id', id);
+    deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    deleteModal.show();
+}
+
+$(document).ready(function() {
+    $('#confirmDelete').click(function() {
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'delete-employee.php',
+            type: 'POST',
+            data: {id: id},
+            success: function(response) {
+                if(response == 'success') {
+                    deleteModal.hide();
+                    location.reload();
+                } else {
+                    alert('Terjadi kesalahan saat menghapus karyawan.');
+                }
+            }
+        });
+    });
+
+    // Event listener untuk tombol Batal
+    $('.btn-secondary[data-bs-dismiss="modal"]').click(function() {
+        deleteModal.hide();
+    });
+
+    // Event listener untuk tombol close (x)
+    $('.btn-close').click(function() {
+        deleteModal.hide();
+    });
+
+    // Event listener untuk klik di luar modal
+    $('#deleteModal').on('click', function(e) {
+        if (e.target === this) {
+            deleteModal.hide();
+        }
+    });
+});
+</script>
 </body>
 </html>
 
