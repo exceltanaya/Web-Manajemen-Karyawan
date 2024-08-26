@@ -81,7 +81,7 @@ $emp_ = mysqli_query($conn, $sql_highest_salary);
 <body>
 
 <div class="container mt-4">
-    <h1 class="text-center mb-4">Dashboard CV.Immanuel</h1>
+    <h1 class="text-center mb-4">Beranda CV.Immanuel</h1>
 
     <div class="row">
         <div class="col-md-4 mb-4">
